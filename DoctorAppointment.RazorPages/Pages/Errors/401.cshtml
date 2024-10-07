@@ -1,0 +1,13 @@
+﻿@page
+@model UnauthorizedModel
+
+@{
+    ViewData["Title"] = "Access Denied - Doctor Appointment";
+}
+
+<div class="text-center">
+    <img src="~/Images/access-denied.png" style="height:50vmin;" />
+    <h1 class="text-danger">Access Denied</h1>
+    <p class="text-danger">You do not have permission to view this resource!</p>
+    <p><a class="btn btn-primary" asp-area="Account" asp-page="/Login" asp-route-returnurl="@ViewData["ReturnUrl"]">Login 🔒</a></p>
+</div>

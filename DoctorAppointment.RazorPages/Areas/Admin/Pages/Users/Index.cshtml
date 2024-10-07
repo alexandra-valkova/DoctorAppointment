@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h1 class="mb-3">Users</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New User</a>
+</p>
+
+<table class="table table-hover table-borderless align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Username)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (UserModel item in Model.Users)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    <partial name="_TableRowButtons" model="@item.Id" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

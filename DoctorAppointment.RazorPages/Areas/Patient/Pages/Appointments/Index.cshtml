@@ -1,0 +1,16 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Appointments";
+}
+
+<h1 class="mb-3">Appointments</h1>
+
+<p>
+    <a asp-page="Request" class="btn btn-primary">Request New Appointment</a>
+</p>
+
+<partial name="_AppointmentsTable" model="@Model.PendingAppointments" />
+<partial name="_AppointmentsTable" model="@Model.ApprovedAppointments" />
+<partial name="_AppointmentsTable" model="@Model.DeclinedAppointments" />

@@ -1,0 +1,45 @@
+﻿@page
+@model DeleteModel
+
+@{
+    ViewData["Title"] = "Delete Role";
+}
+
+<h1>Delete <small class="text-muted">Role</small></h1>
+
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Role.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Role.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Role.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Role.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Users)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (UserRoleModel user in Model.Users)
+            {
+                <a asp-area="Admin" asp-page="/Users/Details" asp-route-id="@user.UserId">
+                    @Html.DisplayFor(model => user.Username)
+                </a>
+                <br />
+            }
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Role.Id" />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>

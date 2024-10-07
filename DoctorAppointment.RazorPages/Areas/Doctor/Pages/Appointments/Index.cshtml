@@ -1,0 +1,12 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Appointments";
+}
+
+<h1 class="mb-3">Appointments</h1>
+
+<partial name="_AppointmentsTable" model="@Model.PendingAppointments" />
+<partial name="_AppointmentsTable" model="@Model.ApprovedAppointments" />
+<partial name="_AppointmentsTable" model="@Model.DeclinedAppointments" />

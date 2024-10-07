@@ -1,0 +1,55 @@
+﻿@using static DoctorAppointment.Domain.Entities.AppointmentStatus
+@model AppointmentListModel
+
+@{
+    AppointmentStatus status = Model.Status;
+
+    string alertClass = status switch
+    {
+        Pending => "alert-warning",
+        Approved => "alert-success",
+        Declined => "alert-danger",
+        _ => throw new NotSupportedException()
+    };
+}
+
+<div class="alert @alertClass" role="alert">
+    <strong>@status.ToString()</strong>
+</div>
+
+<table class="table table-hover table-borderless align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments[0].Patient)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments[0].Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (AppointmentModel item in Model.Appointments)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Patient)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a asp-page="./Review" asp-route-id="@item.Id" class="btn btn-outline-warning">Review</a>
+                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-outline-info">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

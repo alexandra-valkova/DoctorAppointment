@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html class="h-100" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Doctor Appointment</title>
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DoctorAppointmentRazorPages.styles.css" asp-append-version="true" />
+</head>
+<body class="d-flex flex-column h-100">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white fixed-top border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Doctor Appointment 🩺</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <partial name="_MenuPartial" />
+                    <partial name="_AccountPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="flex-shrink-0 pb-3">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 border-top text-muted">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <div class="d-flex">
+                <span>&copy; @DateTime.Now.Year - Doctor Appointment 🩺</span>
+            </div>
+            <div class="d-flex justify-content-end">
+                <span>Icons made by <a href="https://www.flaticon.com/authors/shin-icons" title="shin_icons">shin_icons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Appointments";
+
+    string GetTextColorClass(AppointmentStatus status) => status switch
+    {
+        Approved => "text-success",
+        Pending => "text-warning",
+        Declined => "text-danger",
+        _ => ""
+    };
+}
+
+<h1 class="mb-3">Appointments</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New Appointment</a>
+</p>
+
+<table class="table table-hover table-borderless align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments[0].Patient)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments[0].Doctor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (AppointmentReadModel item in Model.Appointments) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td class="@GetTextColorClass(item.Status) fw-bold">
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patient.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.FullName)
+            </td>
+            <td>
+                <partial name="_TableRowButtons" model="@item.Id" />
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

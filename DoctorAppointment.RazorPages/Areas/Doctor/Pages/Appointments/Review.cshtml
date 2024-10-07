@@ -1,0 +1,56 @@
+﻿@page
+@model ReviewModel
+
+@{
+    ViewData["Title"] = "Review Appointment";
+}
+
+<h1>Review <small class="text-muted">Appointment</small></h1>
+
+<hr />
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Appointment.Date)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Appointment.Date)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Appointment.Patient)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Appointment.Patient)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Appointment.Status)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Appointment.Status)
+    </dd>
+</dl>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="Appointment.Id" />
+            <input type="hidden" asp-for="Appointment.PatientId" />
+            <input type="hidden" asp-for="Appointment.DoctorId" />
+            <input type="hidden" asp-for="Appointment.Date" />
+            <input type="hidden" asp-for="Appointment.Patient" />
+            <div class="form-group">
+                <input type="submit" name="@nameof(Model.Review)" value="@ReviewAction.Approve" class="btn btn-success" />
+                <input type="submit" name="@nameof(Model.Review)" value="@ReviewAction.Decline" class="btn btn-danger" />
+                <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

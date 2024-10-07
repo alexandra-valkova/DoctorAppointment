@@ -1,0 +1,53 @@
+﻿@page
+@model RegisterModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Register</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Registration.FirstName" class="form-control" placeholder="First Name" />
+                <label asp-for="Registration.FirstName" class="form-label"></label>
+                <span asp-validation-for="Registration.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Registration.LastName" class="form-control" placeholder="Last Name" />
+                <label asp-for="Registration.LastName" class="form-label"></label>
+                <span asp-validation-for="Registration.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Registration.Username" class="form-control" placeholder="firstname.lastname" />
+                <label asp-for="Registration.Username" class="form-label"></label>
+                <span asp-validation-for="Registration.Username" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Registration.Email" class="form-control" placeholder="firstname.lastname@email.com" />
+                <label asp-for="Registration.Email" class="form-label"></label>
+                <span asp-validation-for="Registration.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Registration.Password" class="form-control" placeholder="password" />
+                <label asp-for="Registration.Password" class="form-label"></label>
+                <span asp-validation-for="Registration.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Registration.ConfirmPassword" class="form-control" placeholder="password" />
+                <label asp-for="Registration.ConfirmPassword" class="form-label"></label>
+                <span asp-validation-for="Registration.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <input type="submit" value="Register" class="btn btn-primary" />
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

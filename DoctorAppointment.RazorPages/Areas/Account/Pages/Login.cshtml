@@ -1,0 +1,38 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <input type="hidden" name="ReturnUrl" value="@ViewData["ReturnUrl"]" />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Credentials.Username" class="form-control" placeholder="firstname.lastname" />
+                <label asp-for="Credentials.Username" class="form-label"></label>
+                <span asp-validation-for="Credentials.Username" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Credentials.Password" class="form-control" placeholder="password" />
+                <label asp-for="Credentials.Password" class="form-label"></label>
+                <span asp-validation-for="Credentials.Password" class="text-danger"></span>
+            </div>
+            <div class="form-check mb-3">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label"></label>
+            </div>
+            <input type="submit" value="Login" class="btn btn-primary" />
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

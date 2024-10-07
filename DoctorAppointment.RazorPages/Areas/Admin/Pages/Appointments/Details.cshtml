@@ -1,0 +1,55 @@
+﻿@page
+@model DetailsModel
+
+@{
+    ViewData["Title"] = "Appointment Details";
+
+    string GetTextColorClass(AppointmentStatus status) => status switch
+    {
+        Approved => "text-success",
+        Pending => "text-warning",
+        Declined => "text-danger",
+        _ => ""
+    };
+}
+
+<h1>Details <small class="text-muted">Appointment</small></h1>
+
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Appointment.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Appointment.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Appointment.Status)
+        </dt>
+        <dd class="col-sm-10 fw-bold @GetTextColorClass(Model.Appointment.Status)">
+            @Html.DisplayFor(model => model.Appointment.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Appointment.Patient)
+        </dt>
+        <dd class="col-sm-10">
+            <a asp-page="/Users/Details" asp-area="Admin" asp-route-id="@Model.Appointment.PatientId" class="text-primary">
+                @Html.DisplayFor(model => model.Appointment.Patient.FullName)
+            </a>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Appointment.Doctor)
+        </dt>
+        <dd class="col-sm-10">
+            <a asp-page="/Users/Details" asp-area="Admin" asp-route-id="@Model.Appointment.DoctorId">
+                @Html.DisplayFor(model => model.Appointment.Doctor.FullName)
+            </a>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Appointment.Id" class="btn btn-success">Edit</a>
+    <a asp-page="./Delete" asp-route-id="@Model.Appointment.Id" class="btn btn-danger">Delete</a>
+    <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+</div>

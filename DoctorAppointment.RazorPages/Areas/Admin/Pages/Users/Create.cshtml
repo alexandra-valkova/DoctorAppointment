@@ -1,0 +1,50 @@
+﻿@page
+@model CreateModel
+
+@{
+    ViewData["Title"] = "Create User";
+}
+
+<h1>Create <small class="text-muted">User</small></h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="ApplicationUser.FirstName" class="form-control" placeholder="First Name" />
+                <label asp-for="ApplicationUser.FirstName" class="control-label"></label>
+                <span asp-validation-for="ApplicationUser.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="ApplicationUser.LastName" class="form-control" placeholder="Last Name" />
+                <label asp-for="ApplicationUser.LastName" class="control-label"></label>
+                <span asp-validation-for="ApplicationUser.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="ApplicationUser.Username" class="form-control" placeholder="firstname.lastname" />
+                <label asp-for="ApplicationUser.Username" class="control-label"></label>
+                <span asp-validation-for="ApplicationUser.Username" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="ApplicationUser.Email" class="form-control" placeholder="firstname.lastname@email.com" />
+                <label asp-for="ApplicationUser.Email" class="control-label"></label>
+                <span asp-validation-for="ApplicationUser.Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="UserRoles" class="control-label text-muted"></label>
+                <select asp-for="UserRoles" asp-items="@Model.Roles" class="form-control" size="@Model.Roles?.Count();"></select>
+                <span asp-validation-for="UserRoles" class="text-danger"></span>
+            </div>
+            <input type="submit" value="Create" class="btn btn-success" />
+            <a asp-page="Index" class="btn btn-secondary">Back to List</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,33 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+
+<ul class="navbar-nav flex-grow-1">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        if (User.IsInRole(Admin))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Admin" asp-page="/Users/Index">Users 🧑</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Admin" asp-page="/Roles/Index">Roles 🔐</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Admin" asp-page="/Appointments/Index">Appointments 📅</a>
+            </li>
+        }
+
+        if (User.IsInRole(Patient))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Patient" asp-page="/Appointments/Index">Appointments 📅</a>
+            </li>
+        }
+
+        if (User.IsInRole(Doctor))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Doctor" asp-page="/Appointments/Index">Appointments 📅</a>
+            </li>
+        }
+    }
+</ul>

@@ -1,0 +1,43 @@
+﻿@page
+@model DetailsModel
+
+@{
+    ViewData["Title"] = "Role Details";
+}
+
+<h1>Details <small class="text-muted">Role</small></h1>
+
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Role.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Role.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Role.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Role.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserRoles)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (UserRoleModel user in Model.UserRoles)
+            {
+                <a asp-area="Admin" asp-page="/Users/Details" asp-route-id="@user.UserId">
+                    @Html.DisplayFor(model => user.Username)
+                </a>
+                <br />
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Role.Id" class="btn btn-success">Edit</a>
+    <a asp-page="./Delete" asp-route-id="@Model.Role.Id" class="btn btn-danger">Delete</a>
+    <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+</div>

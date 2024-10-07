@@ -1,0 +1,37 @@
+﻿@page
+@model DetailsModel
+
+@{
+    ViewData["Title"] = "Appointment Details";
+}
+
+<h1>Details <small class="text-muted">Appointment</small></h1>
+
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Appointment.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Appointment.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Appointment.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Appointment.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Appointment.Doctor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Appointment.Doctor)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Reschedule" asp-route-id="@Model.Appointment.Id" class="btn btn-warning">Reschedule</a>
+    <a asp-page="./Delete" asp-route-id="@Model.Appointment.Id" class="btn btn-danger">Delete</a>
+    <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+</div>

@@ -1,0 +1,115 @@
+﻿@DoctorAppointmentAPI_HostAddress = https://localhost:7181
+@token = 
+@username = admin
+@password = admin
+@appointmentId = 1
+@patientId = 2
+@doctorId = 3
+@date = 2024-10-10T10:30:00
+@appointmentStatus = Approved
+
+# Appointments
+
+# Get all appointments
+GET {{DoctorAppointmentAPI_HostAddress}}/appointments
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# Get appointments by status Pending
+GET {{DoctorAppointmentAPI_HostAddress}}/appointments?status=Pending
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# Get appointments by status Approved
+GET {{DoctorAppointmentAPI_HostAddress}}/appointments?status=Approved
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# Get appointments by status Declined
+GET {{DoctorAppointmentAPI_HostAddress}}/appointments?status=Declined
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# Get an appointment by id
+GET {{DoctorAppointmentAPI_HostAddress}}/appointments/{{appointmentId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# Get appointments by patientId
+GET {{DoctorAppointmentAPI_HostAddress}}/appointments/patient/{{patientId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# Get appointments by doctorId
+GET {{DoctorAppointmentAPI_HostAddress}}/appointments/doctor/{{doctorId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# Add an appointment
+POST {{DoctorAppointmentAPI_HostAddress}}/appointments
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+{
+  "patientId": "{{patientId}}",
+  "doctorId": "{{doctorId}}",
+  "date": "{{date}}",
+  "status": "{{appointmentStatus}}"
+}
+
+###
+
+# Update an appointment
+PUT {{DoctorAppointmentAPI_HostAddress}}/appointments/{{appointmentId}}
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+{
+  "patientId": "{{patientId}}",
+  "doctorId": "{{doctorId}}",
+  "date": "{{date}}",
+  "status": "{{appointmentStatus}}"
+}
+
+###
+
+# Update an appointment's status
+PATCH {{DoctorAppointmentAPI_HostAddress}}/appointments/{{appointmentId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+"{{appointmentStatus}}"
+
+###
+
+# Delete an appointment
+DELETE {{DoctorAppointmentAPI_HostAddress}}/appointments/{{appointmentId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# Identity
+
+# Login
+POST {{DoctorAppointmentAPI_HostAddress}}/identity/login
+Accept: application/json
+Content-Type: application/json
+{
+  "email": "{{username}}",
+  "password": "{{password}}"
+}

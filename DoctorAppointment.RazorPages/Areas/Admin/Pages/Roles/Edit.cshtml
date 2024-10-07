@@ -1,0 +1,41 @@
+﻿@page
+@model EditModel
+
+@{
+    ViewData["Title"] = "Edit Role";
+}
+
+<h1>Edit <small class="text-muted">Role</small></h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="Role.Id" />
+            <div class="form-floating mb-3">
+                <input asp-for="Role.Name" class="form-control" placeholder="Name" />
+                <label asp-for="Role.Name" class="form-label"></label>
+                <span asp-validation-for="Role.Name" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <textarea asp-for="Role.Description" class="form-control" placeholder="Description"></textarea>
+                <label asp-for="Role.Description" class="form-label"></label>
+                <span asp-validation-for="Role.Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="UserRoles" class="form-label text-muted"></label>
+                <select asp-for="UserRoles" asp-items="@Model.Users" class="form-control" size="@Model.Users?.Count();"></select>
+                <span asp-validation-for="UserRoles" class="text-danger"></span>
+            </div>
+            <input type="submit" value="Save" class="btn btn-success" />
+            <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

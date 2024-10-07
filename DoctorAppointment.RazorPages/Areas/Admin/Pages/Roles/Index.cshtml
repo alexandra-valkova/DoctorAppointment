@@ -1,0 +1,42 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<h1 class="mb-3">Roles</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New Role</a>
+</p>
+
+<table class="table table-hover table-borderless align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Roles[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Roles[0].Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (RoleModel item in Model.Roles)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <partial name="_TableRowButtons" model="@item.Id" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
